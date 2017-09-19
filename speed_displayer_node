@@ -1,0 +1,27 @@
+#!/usr/bin/env python 
+import rospy
+import math
+import os
+import sys
+import subprocess
+import re
+import time
+from geometry_msgs.msg import PoseStamped
+from geometry_msgs.msg import TwistStamped
+from std_msgs.msg import Float64
+import threading
+import yaml
+
+
+def OnTwist(twist_msg):
+  speed = math.sqrt(twist_msg.twist.linear.x*twist_msg.twist.linear.x + twist_msg.twist.linear.y*twist_msg.twist.linear.y)
+  print speed
+
+rospy.init_node('experiment_logger')
+rospy.Subscriber('/twist', TwistStamped, OnTwist)
+print "started everything in experiment logger"
+rospy.spin()
+
+print "started everything in experiment logger"
+
+
